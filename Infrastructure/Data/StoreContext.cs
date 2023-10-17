@@ -17,10 +17,24 @@ namespace Infrastructure.Data
         public DbSet<ProductBrand> productBrands { get; set; }
         public DbSet<ProductType> productTypes { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modeBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modeBuilder);
-            modeBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
+            {
+                foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+                {
+                    var properties = entityType.ClrType.GetProperties().Where(x => x.PropertyType == typeof(decimal));
+
+                    foreach (var property in properties)
+                    {
+                        modelBuilder.Entity(entityType.Name).Property(property.Name)
+                        .HasConversion<double>();
+                    }
+                }
+            }
         }
     }
 }
