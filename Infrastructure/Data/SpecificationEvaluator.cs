@@ -21,7 +21,14 @@ namespace Infrastructure.Data
             query = specification.Includes.Aggregate(query, (current, include) => current.Include(include)
              );
 
+            /*
+                        query = specification.IncludeStrings.Aggregate(query,
+                        (current, include) =>
+                        current.Include(include));*/
+
             return query;
         }
+
+
     }
 }

@@ -4,6 +4,7 @@ namespace Core.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T>
     {
+        //public List<string> IncludeStrings { get; } = new List<string>();
         public BaseSpecification()
         {
 
@@ -21,5 +22,11 @@ namespace Core.Specifications
         {
             Includes.Add(includeExpression);
         }
+
+        /*
+                protected void AddInclude(string includeString)
+                {
+                    IncludeStrings.Add(includeString);
+                }*/
     }
 }
