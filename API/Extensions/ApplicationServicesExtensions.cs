@@ -20,7 +20,7 @@ namespace API.Extensions
             );
 
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<ITokenService, TokenService>();
+            // services.AddScoped<ITokenService, TokenService>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
