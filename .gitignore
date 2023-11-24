@@ -478,3 +478,7 @@ $RECYCLE.BIN/
 API/Controllers/ProductsController.cs
 StudentAssets/*
 API/appsettings.json
+
+#skinet db-shm
+*.db-shm
+*.db-wal
